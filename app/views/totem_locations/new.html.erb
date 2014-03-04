@@ -18,10 +18,29 @@
 		  
 	<%= text_field_tag :totem_location_code, params[:totem_location_code], name: 'totem_location[code]' %>
 	<br/>
+	
+	<%= label_tag(:location, "Location:") %>
+	 <!--div id="panel"-->
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Geocode" onclick="codeAddress()">
+    <!--/div-->
+	
+	<br/>
 	<%= label_tag(:location, "Location:") %>
 	<%= hidden_field_tag(:totem_location_location, params[:totem_location_location], name: 'totem_location[location]') %>
 	<label id="totem_LocationP"></label>
 	<br/>
+	
+	<%= label_tag(:name, "Location name:") %>
+	<%= hidden_field_tag(:totem_location_name, params[:totem_location_name], name: 'totem_location[name]') %>
+	<label id="totem_LocationNameP"></label>
+	<br/>
+	
+	<%= label_tag(:description, "Description:") %>
+	<%= text_area_tag :totem_location_description, params[:totem_location_description], name: 'totem_location[description]' %>
+	<br/>
+	
+
 	</div>
   <%= submit_tag("Submit") %>  
 
@@ -31,7 +50,8 @@
 
     <style>
       html, body, #map-canvas {
-        height: 100%;
+        height: 250px;
+		width: 700px;
         margin: 0px;
         padding: 0px
       }
@@ -72,6 +92,9 @@
 			  //CDZ
 			  $("#totem_location_location").val(results[0].geometry.location);
 			  $("#totem_LocationP").text(results[0].geometry.location);
+			  $("#totem_location_name").val(results[0].address_components[0].long_name);
+			  $("#totem_LocationNameP").text(results[0].address_components[0].long_name);
+			  
 			  //alert(results[0].address_components[0].short_name);
 			  //alert(results[0].address_components[0].long_name);
 			} else {
@@ -84,8 +107,5 @@
 
     </script>
 
-    <div id="panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input type="button" value="Geocode" onclick="codeAddress()">
-    </div>
+
     <div id="map-canvas"></div>
