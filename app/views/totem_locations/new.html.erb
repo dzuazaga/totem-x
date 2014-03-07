@@ -15,8 +15,11 @@
 
 	<div class="field">
 	<%= label_tag(:code, "Code:") %>
-		  
 	<%= text_field_tag :totem_location_code, params[:totem_location_code], name: 'totem_location[code]' %>
+	<br/>
+	
+	<%= label_tag(:email, "Email:") %>
+	<%= text_field_tag :totem_location_email, params[:totem_location_email], name: 'totem_location[email]' %>
 	<br/>
 	
 	<%= label_tag(:location, "Location:") %>
