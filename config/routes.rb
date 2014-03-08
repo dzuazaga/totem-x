@@ -1,13 +1,12 @@
 Totem::Application.routes.draw do
   resources :totem_locations
 
- get '/foo', :to => redirect('/lala.html')
-  
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  #root 'welcome#index'
+  root 'totem_locations#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
