@@ -41,11 +41,16 @@
 			<br/>		
 			
 			<%= label_tag(:description, "Description", for:'totem_location[description]') %>
-			<%= text_area_tag :totem_location_description, params[:totem_location_description], name: 'totem_location[description]', class: 'form-control', id:'totem_location[description]', placeholder: "Enter a description here..." %>
+			<%= text_area_tag :totem_location_description, params[:totem_location_description], name: 'totem_location[description]', class: 'form-control', id:'totem_location[description]', placeholder: "Enter a description here...", rows:'1' %>
 			<br/>
 		</div>
 		
-	  <%= submit_tag("Submit") %>  
+
+	</div>
+	<div class="row">
+		<div class="col-xs-4">
+		  <%= submit_tag("Submit", class:'btn btn-default') %>  
+		</div>
 	</div>
 	
 <% end %>
