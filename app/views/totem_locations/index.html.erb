@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+	  <th>Created on</th>	
       <th>Code</th>
       <th>Name</th>
 	  <th>Email</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @totem_locations.each do |totem_location| %>
       <tr>
+	  <td><%= totem_location.created_at %></td>
         <td><%= totem_location.code %></td>
         <td><%= totem_location.name %></td>
 		<td><%= totem_location.email %></td>
