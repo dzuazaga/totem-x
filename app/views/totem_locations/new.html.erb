@@ -58,9 +58,9 @@
 <%= link_to 'Back', totem_locations_path %>
 
     <style>
-      html, body, #map-canvas {
-        height: 250px;
-		width: 100%;
+      #map-canvas {
+        height: 500px;
+		width: 800px;
         margin: 0px;
         padding: 0px
       }
@@ -81,9 +81,9 @@
 		var map;
 		function initialize() {
 		  geocoder = new google.maps.Geocoder();
-		  var latlng = new google.maps.LatLng(-34.6037232, -58.38159310000003);
+		  var latlng = new google.maps.LatLng(9.081999, 8.675277000000051);
 		  var mapOptions = {
-			zoom: 3,
+			zoom: 2,
 			center: latlng
 		  }
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
