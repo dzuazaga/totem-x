@@ -14,10 +14,13 @@ end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+#CDZ adding bootstrap
 gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
 end
+#CDZ adding gem to correct the problem of not finding assets in prod.
+gem 'rails_12factor'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
