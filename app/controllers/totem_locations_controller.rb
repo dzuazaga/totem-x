@@ -69,6 +69,6 @@ class TotemLocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def totem_location_params
-      params.require(:totem_location).permit(:code, :name, :location, :description)
+      params.require(:totem_location).permit(:code, :name, :location, :description, :email)
     end
 end
