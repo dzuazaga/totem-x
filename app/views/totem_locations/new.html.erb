@@ -11,42 +11,43 @@
 <% end %>
 
 
-<%= form_tag totem_locations_path do %>
+<%= form_tag totem_locations_path, :role => 'form' do %>
 
-	<div class="field">
-	<%= label_tag(:code, "Code:") %>
-	<%= text_field_tag :totem_location_code, params[:totem_location_code], name: 'totem_location[code]' %>
-	<br/>
-	
-	<%= label_tag(:email, "Email:") %>
-	<%= text_field_tag :totem_location_email, params[:totem_location_email], name: 'totem_location[email]' %>
-	<br/>
-	
-	<%= label_tag(:location, "Location:") %>
-	 <!--div id="panel"-->
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input type="button" value="Geocode" onclick="codeAddress()">
-    <!--/div-->
-	
-	<br/>
-	<%= label_tag(:location, "Location:") %>
-	<%= hidden_field_tag(:totem_location_location, params[:totem_location_location], name: 'totem_location[location]') %>
-	<label id="totem_LocationP"></label>
-	<br/>
-	
-	<%= label_tag(:name, "Location name:") %>
-	<%= hidden_field_tag(:totem_location_name, params[:totem_location_name], name: 'totem_location[name]') %>
-	<label id="totem_LocationNameP"></label>
-	<br/>
-	
-	<%= label_tag(:description, "Description:") %>
-	<%= text_area_tag :totem_location_description, params[:totem_location_description], name: 'totem_location[description]' %>
-	<br/>
-	
+	<div class="row">
+		<div class="col-xs-4">
+			<%= label_tag(:code, "Code", for: 'totem_location[code]') %>
+			<%= text_field_tag :totem_location_code, params[:totem_location_code], name: 'totem_location[code]', class: 'form-control', id:'totem_location[code]', placeholder: "Enter totem code" %>
+			<br/>
 
+			<%= label_tag(:location, "Location", for: 'totem_location[location]') %>
+			<input id="address" type="textbox" id='totem_location[location]' class='form-control' placeholder="Type your location">
+			<input type="button" value="Geocode" onclick="codeAddress()">
+			
+			<!-- CAMPOS OCULTOS PARA PERSISTIR LA UBICACIÓN (COORDENADAS Y EL NOMBRE) -->
+			<!--%= label_tag(:location, "Location:") %-->
+			<%= hidden_field_tag(:totem_location_location, params[:totem_location_location], name: 'totem_location[location]') %>
+			<!--label id="totem_LocationP"></label-->
+			<br/>			
+			<!--%= label_tag(:name, "Location name:") %-->
+			<%= hidden_field_tag(:totem_location_name, params[:totem_location_name], name: 'totem_location[name]') %>
+			<!--label id="totem_LocationNameP"></label-->
+
+		</div>
+		
+		<div class="col-xs-4">
+			
+			<%= label_tag(:email, "Email", for:'totem_location[email]') %>
+			<%= text_field_tag :totem_location_email, params[:totem_location_email], name: 'totem_location[email]', class: 'form-control', id:'totem_location[email]', placeholder: "Enter email" %>
+			<br/>		
+			
+			<%= label_tag(:description, "Description", for:'totem_location[description]') %>
+			<%= text_area_tag :totem_location_description, params[:totem_location_description], name: 'totem_location[description]', class: 'form-control', id:'totem_location[description]', placeholder: "Enter a description here..." %>
+			<br/>
+		</div>
+		
+	  <%= submit_tag("Submit") %>  
 	</div>
-  <%= submit_tag("Submit") %>  
-
+	
 <% end %>
 
 <%= link_to 'Back', totem_locations_path %>
@@ -75,9 +76,9 @@
 		var map;
 		function initialize() {
 		  geocoder = new google.maps.Geocoder();
-		  var latlng = new google.maps.LatLng(-34.397, 150.644);
+		  var latlng = new google.maps.LatLng(-34.6037232, -58.38159310000003);
 		  var mapOptions = {
-			zoom: 8,
+			zoom: 3,
 			center: latlng
 		  }
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -87,6 +88,7 @@
 		  var address = document.getElementById('address').value;
 		  geocoder.geocode( { 'address': address}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
+			  initialize(); //CDZ para borrar el Marker anterior.
 			  map.setCenter(results[0].geometry.location);
 			  var marker = new google.maps.Marker({
 				  map: map,
@@ -97,6 +99,7 @@
 			  $("#totem_LocationP").text(results[0].geometry.location);
 			  $("#totem_location_name").val(results[0].address_components[0].long_name);
 			  $("#totem_LocationNameP").text(results[0].address_components[0].long_name);
+			  
 			  
 			  //alert(results[0].address_components[0].short_name);
 			  //alert(results[0].address_components[0].long_name);
