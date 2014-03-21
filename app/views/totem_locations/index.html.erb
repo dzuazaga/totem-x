@@ -29,12 +29,27 @@ function initialize() {
   var flightPlanCoordinates = [
   
   <% @totem_locations.each do |totem_location| %>
-	new google.maps.LatLng<%=totem_location.location %>,
+	//Armo el listado de ubicaciones. Quito la coma del último elemento.
+	new google.maps.LatLng<%=totem_location.location %><%if totem_location != @totem_locations.last%>,<% end %>
   <% end %>
   ];
   
+  // Define a symbol using a predefined path (an arrow)
+  // supplied by the Google Maps JavaScript API.
+  var lineSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+  };
+  
   var flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
+	icons: [
+	//Agrego íconos proporcionalmente a la cantidad de saltos que hay en la polyline.
+	//Una flecha por salto. Siempre las flechas se muestran a la misma distancia para no complicarla.
+	<% (1..@totem_locations.size-1).each do |i| %>
+	{icon: lineSymbol, offset: '<%= 100/@totem_locations.size * i%>%'},
+	<% end %>
+	{icon: lineSymbol, offset: '100%'}
+	],
     geodesic: true,
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
