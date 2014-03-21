@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307034153) do
+ActiveRecord::Schema.define(version: 20140311013447) do
 
   create_table "totem_locations", force: true do |t|
     t.string   "code"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20140307034153) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
+  end
+
+  create_table "totem_things", force: true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -1,0 +1,29 @@
+<h1>Listing totem_things</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @totem_things.each do |totem_thing| %>
+      <tr>
+        <td><%= totem_thing.code %></td>
+        <td><%= totem_thing.name %></td>
+        <td><%= link_to 'Show', totem_thing %></td>
+        <td><%= link_to 'Edit', edit_totem_thing_path(totem_thing) %></td>
+        <td><%= link_to 'Destroy', totem_thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Totem thing', new_totem_thing_path %>

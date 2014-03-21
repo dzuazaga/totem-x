@@ -1,4 +1,6 @@
 Totem::Application.routes.draw do
+  resources :totem_things
+
   resources :totem_locations
 
  

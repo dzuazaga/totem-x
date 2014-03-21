@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @totem_thing.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @totem_thing.name %>
+</p>
+
+<%= link_to 'Edit', edit_totem_thing_path(@totem_thing) %> |
+<%= link_to 'Back', totem_things_path %>
