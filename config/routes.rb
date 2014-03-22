@@ -1,4 +1,6 @@
 Totem::Application.routes.draw do
+  get "static_pages/home"
+  get "static_pages/help"
   resources :totem_things
 
   resources :totem_locations
@@ -8,8 +10,9 @@ Totem::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'totem_locations#new'
-
+  #root 'totem_locations#new'
+   root 'static_pages#home'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
